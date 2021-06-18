@@ -23,14 +23,11 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private BDSQLiteHelper bd;
-    ArrayList<Livro> listaLivros;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        bd = new BDSQLiteHelper(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -56,25 +53,6 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        listaLivros = bd.getAllLivros();
-
-        ListView lista = (ListView) findViewById(R.id.lvLivros);
-        LivrosAdapter adapter = new LivrosAdapter(this, listaLivros);
-        lista.setAdapter(adapter);
-
-        lista.setOnItemClickListener((parent, view, position, id) -> {
-            Intent intent = new Intent(MainActivity.this, EditarLivroActivity.class);
-            intent.putExtra("ID", listaLivros.get(position).getId());
-
-            intent.putExtra("LivroCorrente", listaLivros.get(position) );
-
-
-            startActivity(intent);
-        });
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

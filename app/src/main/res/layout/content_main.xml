@@ -18,10 +18,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/mobile_navigation" />
 
-    <ListView
-        android:id="@+id/lvLivros"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-    </ListView>
 </androidx.constraintlayout.widget.ConstraintLayout>
