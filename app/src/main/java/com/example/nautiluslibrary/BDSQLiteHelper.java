@@ -17,7 +17,8 @@ public class BDSQLiteHelper extends SQLiteOpenHelper {
     private static final String TITULO = "titulo";
     private static final String AUTOR = "autor";
     private static final String ANO = "ano";
-    private static final String[] COLUNAS = {ID, TITULO, AUTOR, ANO};
+    private static final String FOTO = "foto";
+    private static final String[] COLUNAS = {ID, TITULO, AUTOR, ANO, FOTO};
 
     public BDSQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -29,7 +30,8 @@ public class BDSQLiteHelper extends SQLiteOpenHelper {
                 "id INTEGER PRIMARY KEY AUTOINCREMENT,"+
                 "titulo TEXT,"+
                 "autor TEXT,"+
-                "ano INTEGER)";
+                "ano INTEGER"+
+                "foto TEXT)";
         db.execSQL(CREATE_TABLE);
     }
 
@@ -45,6 +47,7 @@ public class BDSQLiteHelper extends SQLiteOpenHelper {
         values.put(TITULO, livro.getTitulo());
         values.put(AUTOR, livro.getAutor());
         values.put(ANO, new Integer(livro.getAno()));
+        values.put(FOTO, livro.getFoto());
         db.insert(TABELA_LIVROS, null, values);
         db.close();
     }
@@ -74,6 +77,7 @@ public class BDSQLiteHelper extends SQLiteOpenHelper {
         livro.setTitulo(cursor.getString(1));
         livro.setAutor(cursor.getString(2));
         livro.setAno(Integer.parseInt(cursor.getString(3)));
+        livro.setFoto(cursor.getString(4));
         return livro;
     }
 
@@ -97,6 +101,8 @@ public class BDSQLiteHelper extends SQLiteOpenHelper {
         values.put(TITULO, livro.getTitulo());
         values.put(AUTOR, livro.getAutor());
         values.put(ANO, new Integer(livro.getAno()));
+        values.put(FOTO, livro.getFoto());
+
         int i = db.update(TABELA_LIVROS, //tabela
                 values, // valores
                 ID+" = ?", // colunas para comparar

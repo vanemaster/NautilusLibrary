@@ -28,9 +28,12 @@ public class LivrosAdapter extends ArrayAdapter<Livro> {
         TextView titulo = (TextView) rowView.findViewById(R.id.txtNome);
         TextView ano = (TextView) rowView.findViewById(R.id.txtAno);
         TextView autor = (TextView) rowView.findViewById(R.id.txtAutor);
+        ImageView foto = (ImageView) rowView.findViewById(R.id.imageFoto);
         titulo.setText(elementos.get(position).getTitulo());
         autor.setText(elementos.get(position).getAutor());
         ano.setText(Integer.toString(elementos.get(position).getAno()));
+        ano.setImage(Integer.toString(elementos.get(position).getFoto()));
+
 
 
         return rowView;
