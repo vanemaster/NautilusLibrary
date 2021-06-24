@@ -26,11 +26,11 @@ public class BDSQLiteHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_TABLE = "CREATE TABLE livros ("+
-                "id INTEGER PRIMARY KEY AUTOINCREMENT,"+
-                "titulo TEXT,"+
-                "autor TEXT,"+
-                "ano INTEGER"+
+        String CREATE_TABLE = "CREATE TABLE livros ( "+
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                "titulo TEXT, "+
+                "autor TEXT, "+
+                "ano INTEGER, "+
                 "foto TEXT)";
         db.execSQL(CREATE_TABLE);
     }
