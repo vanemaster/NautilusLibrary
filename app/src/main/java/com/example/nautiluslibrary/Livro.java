@@ -9,15 +9,17 @@ public class Livro implements Serializable {
     private String autor;
     private int ano;
     private String foto;
+    private String genero;
 
     public Livro() { }
 
-    public Livro(String titulo, String autor, int ano,String foto) {
-        super();
+    public Livro(int id, String titulo, String autor, int ano, String foto, String genero) {
+        this.id = id;
         this.titulo = titulo;
         this.autor = autor;
         this.ano = ano;
         this.foto = foto;
+        this.genero = genero;
     }
 
     public int getId() {
@@ -55,4 +57,8 @@ public class Livro implements Serializable {
     public String getFoto() { return foto; }
 
     public void setFoto(String foto) { this.foto = foto; }
+
+    public String getGenero() {return genero; }
+
+    public void setGenero(String genero) { this.genero = genero; }
 }

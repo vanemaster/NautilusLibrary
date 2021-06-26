@@ -40,6 +40,8 @@ public class LivroActivity extends AppCompatActivity {
         final EditText nome = (EditText) findViewById(R.id.edNome);
         final EditText autor = (EditText) findViewById(R.id.edAutor);
         final EditText ano = (EditText) findViewById(R.id.edAno);
+        final EditText genero = (EditText) findViewById(R.id.edGenero);
+
         Button novo = (Button) findViewById(R.id.btnAdd);
         novo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +50,7 @@ public class LivroActivity extends AppCompatActivity {
                 livro.setTitulo(nome.getText().toString());
                 livro.setAutor(autor.getText().toString());
                 livro.setAno(Integer.parseInt(ano.getText().toString()));
+                livro.setGenero(autor.getText().toString());
                 bd.addLivro(livro);
                 Intent intent = new Intent(LivroActivity.this,MainActivity.class);
                 startActivity(intent);

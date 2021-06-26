@@ -7,24 +7,25 @@
     android:layout_height="match_parent"
     tools:context=".LivroActivity">
 
+
     <ImageView
         android:id="@+id/imageFoto"
         android:layout_width="257dp"
         android:layout_height="255dp"
         android:layout_marginStart="88dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="28dp"
         android:src="@drawable/ic_launcher_foreground"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/backgrounds/scenic"/>
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
 
     <Button
         android:id="@+id/btnCarrega"
         android:layout_width="174dp"
         android:layout_height="58dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="24dp"
         android:onClick="buscar"
         android:text="Carrega imagem"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,36 +36,35 @@
         android:layout_width="141dp"
         android:layout_height="58dp"
         android:layout_marginStart="236dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:onClick="tirarFoto"
         android:text="Tirar foto"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageFoto" />
 
-
     <EditText
-        android:id="@+id/edTitulo"
+        android:id="@+id/edNome"
         android:layout_width="208dp"
         android:layout_height="51dp"
         android:layout_below="@+id/textHint"
         android:layout_centerInParent="true"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="20dp"
         android:hint="Titulo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageFoto" />
+        app:layout_constraintTop_toBottomOf="@+id/btnCarrega" />
 
     <EditText
-        android:id="@+id/edIsbn"
+        android:id="@+id/edAno"
         android:layout_width="208dp"
         android:layout_height="51dp"
         android:layout_below="@+id/textHint"
         android:layout_centerInParent="true"
-        android:layout_marginStart="100dp"
+        android:layout_marginStart="112dp"
         android:layout_marginTop="12dp"
         android:hint="Ano"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edTitulo" />
+        app:layout_constraintTop_toBottomOf="@+id/edAutor" />
 
     <EditText
         android:id="@+id/edAutor"
@@ -72,32 +72,32 @@
         android:layout_height="51dp"
         android:layout_below="@+id/textHint"
         android:layout_centerInParent="true"
-        android:layout_marginStart="100dp"
+        android:layout_marginStart="112dp"
         android:layout_marginTop="12dp"
         android:hint="Autor"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edIsbn" />
+        app:layout_constraintTop_toBottomOf="@+id/edNome" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/edGenero"
         android:layout_width="208dp"
         android:layout_height="51dp"
         android:layout_below="@+id/nameEditText"
-        android:layout_marginStart="100dp"
+        android:layout_marginStart="112dp"
         android:layout_marginTop="12dp"
         android:layout_toRightOf="@+id/phoneEditText"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edAutor" />
+        app:layout_constraintTop_toBottomOf="@+id/edAno" />
 
     <Button
         android:id="@+id/btnAdd"
         android:layout_width="163dp"
         android:layout_height="63dp"
-        android:layout_marginStart="124dp"
+        android:layout_marginStart="136dp"
         android:layout_marginTop="12dp"
         android:layout_weight="1"
         android:text="Adicionar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/edGenero" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
