@@ -12,4 +12,14 @@
     <string name="menu_slideshow">Auto Ajuda</string>
     <string name="confirmar_exclusao">Confirme exclusão</string>
     <string name="quer_mesmo_apagar">Você realmente quer apagar esse registro?</string>
+    <string name="intent_type">image/*</string>
+    <string name="select_image">Selecionar imagem</string>
+
+    <string name="terror">Terror</string>
+    <string name="romance">Romance</string>
+    <string name="ficcao_cientifica">Ficção Científica</string>
+    <string name="policial">Policial</string>
+    <string name="auto_ajuda">Auto Ajuda</string>
+    <string name="tecnico">Técnico</string>
+    <string name="infantil">Infantil</string>
 </resources>

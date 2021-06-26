@@ -5,7 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteStatement;
 
+import java.sql.Blob;
 import java.util.ArrayList;
 
 public class BDSQLiteHelper extends SQLiteOpenHelper {
@@ -32,7 +34,7 @@ public class BDSQLiteHelper extends SQLiteOpenHelper {
                 "titulo TEXT, "+
                 "autor TEXT, "+
                 "ano INTEGER, "+
-                "foto TEXT, "+
+                "foto BLOB, "+
                 "genero TEXT)";
         db.execSQL(CREATE_TABLE);
     }
@@ -46,12 +48,19 @@ public class BDSQLiteHelper extends SQLiteOpenHelper {
     public void addLivro(Livro livro) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(TITULO, livro.getTitulo());
-        values.put(AUTOR, livro.getAutor());
-        values.put(ANO, new Integer(livro.getAno()));
-        values.put(FOTO, livro.getFoto());
-        values.put(GENERO, livro.getGenero());
-        db.insert(TABELA_LIVROS, null, values);
+
+        String sql = "INSERT INTO livros (id,titulo,autor,ano,foto,genero) VALUES(?,?,?,?,?,?)";
+        SQLiteStatement insertStmt = db.compileStatement(sql);
+        insertStmt.clearBindings();
+        insertStmt.bindLong(1, livro.getId());
+        insertStmt.bindString(2,livro.getTitulo());
+        insertStmt.bindString(3,livro.getAutor());
+        insertStmt.bindLong(4,livro.getAno());
+        insertStmt.bindBlob(5, livro.getFoto());
+        insertStmt.bindString(6,livro.getGenero());
+
+        insertStmt.executeInsert();
+
         db.close();
     }
 
@@ -81,8 +90,8 @@ public class BDSQLiteHelper extends SQLiteOpenHelper {
         livro.setTitulo(cursor.getString(1));
         livro.setAutor(cursor.getString(2));
         livro.setAno(Integer.parseInt(cursor.getString(3)));
-        livro.setFoto(cursor.getString(4));
-        livro.setGenero(cursor.getString(6));
+        livro.setFoto(cursor.getBlob(4));
+        livro.setGenero(cursor.getString(5));
         return livro;
     }
 

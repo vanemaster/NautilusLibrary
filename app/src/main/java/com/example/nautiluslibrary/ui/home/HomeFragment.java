@@ -3,6 +3,7 @@ package com.example.nautiluslibrary.ui.home;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +58,12 @@ public class HomeFragment extends Fragment {
         ListView lista = (ListView) root.findViewById(R.id.lvLivros);
         LivrosAdapter adapter = new LivrosAdapter(getActivity(), listaLivros);
         lista.setAdapter(adapter);
+        Log.d("lista",listaLivros.toString());
+
+//        for(String log : listaLivros)
+//        {
+//            Log.v("Tag",log);
+//        }
 
         lista.setOnItemClickListener((parent, view, position, id) -> {
             Intent intent = new Intent(getActivity(), EditarLivroActivity.class);

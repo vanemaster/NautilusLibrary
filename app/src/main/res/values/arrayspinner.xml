@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="arrayspinner">
+
+        <item>@string/romance</item>
+        <item>@string/terror</item>
+        <item>@string/ficcao_cientifica</item>
+        <item>@string/policial</item>
+        <item>@string/auto_ajuda</item>
+        <item>@string/tecnico</item>
+        <item>@string/infantil</item>
+
+
+
+    </string-array>
+</resources>

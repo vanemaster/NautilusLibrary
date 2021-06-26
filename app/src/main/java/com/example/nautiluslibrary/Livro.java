@@ -1,5 +1,6 @@
 package com.example.nautiluslibrary;
 
+import java.io.File;
 import java.io.Serializable;
 
 public class Livro implements Serializable {
@@ -8,12 +9,12 @@ public class Livro implements Serializable {
     private String titulo;
     private String autor;
     private int ano;
-    private String foto;
+    private byte[] foto;
     private String genero;
 
     public Livro() { }
 
-    public Livro(int id, String titulo, String autor, int ano, String foto, String genero) {
+    public Livro(int id, String titulo, String autor, int ano, byte[] foto, String genero) {
         this.id = id;
         this.titulo = titulo;
         this.autor = autor;
@@ -54,9 +55,9 @@ public class Livro implements Serializable {
         this.ano = ano;
     }
 
-    public String getFoto() { return foto; }
+    public byte[] getFoto() { return foto; }
 
-    public void setFoto(String foto) { this.foto = foto; }
+    public void setFoto(byte[] foto) { this.foto = foto; }
 
     public String getGenero() {return genero; }
 
