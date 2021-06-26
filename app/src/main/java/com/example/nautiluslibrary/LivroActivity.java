@@ -50,7 +50,7 @@ public class LivroActivity extends AppCompatActivity {
                 livro.setTitulo(nome.getText().toString());
                 livro.setAutor(autor.getText().toString());
                 livro.setAno(Integer.parseInt(ano.getText().toString()));
-                livro.setGenero(autor.getText().toString());
+                livro.setGenero(genero.getText().toString());
                 bd.addLivro(livro);
                 Intent intent = new Intent(LivroActivity.this,MainActivity.class);
                 startActivity(intent);

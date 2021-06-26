@@ -25,6 +25,7 @@ public class EditarLivroActivity extends AppCompatActivity {
         final EditText nome = (EditText) findViewById(R.id.etNome);
         final EditText autor = (EditText) findViewById(R.id.etAutor);
         final EditText ano = (EditText) findViewById(R.id.etAno);
+        final EditText genero = (EditText) findViewById(R.id.etGenero);
         nome.setText(livro.getTitulo());
         autor.setText(livro.getAutor());
         ano.setText(String.valueOf(livro.getAno()));
@@ -38,6 +39,7 @@ public class EditarLivroActivity extends AppCompatActivity {
                 livro.setTitulo(nome.getText().toString());
                 livro.setAutor(autor.getText().toString());
                 livro.setAno(Integer.parseInt(ano.getText().toString()));
+                livro.setGenero(genero.getText().toString());
                 bd.updateLivro(livro);
                 Intent intent = new Intent(EditarLivroActivity.this, MainActivity.class);
                 startActivity(intent);

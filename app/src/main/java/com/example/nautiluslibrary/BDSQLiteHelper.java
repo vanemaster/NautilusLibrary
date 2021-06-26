@@ -18,7 +18,8 @@ public class BDSQLiteHelper extends SQLiteOpenHelper {
     private static final String AUTOR = "autor";
     private static final String ANO = "ano";
     private static final String FOTO = "foto";
-    private static final String[] COLUNAS = {ID, TITULO, AUTOR, ANO, FOTO};
+    private static final String GENERO = "genero";
+    private static final String[] COLUNAS = {ID, TITULO, AUTOR, ANO, FOTO, GENERO};
 
     public BDSQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -31,7 +32,8 @@ public class BDSQLiteHelper extends SQLiteOpenHelper {
                 "titulo TEXT, "+
                 "autor TEXT, "+
                 "ano INTEGER, "+
-                "foto TEXT)";
+                "foto TEXT, "+
+                "genero TEXT)";
         db.execSQL(CREATE_TABLE);
     }
 
@@ -48,10 +50,12 @@ public class BDSQLiteHelper extends SQLiteOpenHelper {
         values.put(AUTOR, livro.getAutor());
         values.put(ANO, new Integer(livro.getAno()));
         values.put(FOTO, livro.getFoto());
+        values.put(GENERO, livro.getGenero());
         db.insert(TABELA_LIVROS, null, values);
         db.close();
     }
 
+    // Necessário adicionar mais um NULL para Gênero ?
     public Livro getLivro(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABELA_LIVROS, // a. tabela
@@ -78,6 +82,7 @@ public class BDSQLiteHelper extends SQLiteOpenHelper {
         livro.setAutor(cursor.getString(2));
         livro.setAno(Integer.parseInt(cursor.getString(3)));
         livro.setFoto(cursor.getString(4));
+        livro.setGenero(cursor.getString(6));
         return livro;
     }
 
@@ -102,6 +107,8 @@ public class BDSQLiteHelper extends SQLiteOpenHelper {
         values.put(AUTOR, livro.getAutor());
         values.put(ANO, new Integer(livro.getAno()));
         values.put(FOTO, livro.getFoto());
+        values.put(GENERO, livro.getGenero());
+
 
         int i = db.update(TABELA_LIVROS, //tabela
                 values, // valores
