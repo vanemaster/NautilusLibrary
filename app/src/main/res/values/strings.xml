@@ -7,9 +7,9 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_home">Todos os Gêneros</string>
+    <string name="menu_gallery">Terror</string>
+    <string name="menu_slideshow">Auto Ajuda</string>
     <string name="confirmar_exclusao">Confirme exclusão</string>
     <string name="quer_mesmo_apagar">Você realmente quer apagar esse registro?</string>
 </resources>
