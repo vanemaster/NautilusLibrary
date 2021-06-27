@@ -6,15 +6,42 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_home" />
+            android:icon="@drawable/books_stack_of_three"
+            android:title="@string/todos_os_generos" />
         <item
             android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
+            android:icon="@drawable/pngegg"
+            android:title="@string/terror" />
         <item
             android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:icon="@drawable/clipart3101415"
+            android:title="@string/auto_ajuda" />
+
+        <item
+            android:id="@+id/nav_romance"
+            android:icon="@drawable/like_favorite_heart_3524"
+            android:title="@string/romance" />
+
+        <item
+            android:id="@+id/nav_ficcao"
+            android:icon="@drawable/fic__o"
+            android:title="@string/ficcao_cientifica" />
+
+        <item
+            android:id="@+id/nav_policial"
+            android:icon="@drawable/policial"
+            android:title="@string/policial" />
+
+        <item
+            android:id="@+id/nav_tecnico"
+            android:icon="@drawable/tecnico"
+            android:title="@string/tecnico" />
+
+        <item
+            android:id="@+id/nav_infantil"
+            android:icon="@drawable/infantil"
+            android:title="@string/infantil" />
+
+
     </group>
 </menu>
