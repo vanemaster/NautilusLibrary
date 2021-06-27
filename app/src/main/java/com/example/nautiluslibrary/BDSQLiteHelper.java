@@ -52,7 +52,7 @@ public class BDSQLiteHelper extends SQLiteOpenHelper {
         String sql = "INSERT INTO livros (id,titulo,autor,ano,foto,genero) VALUES(?,?,?,?,?,?)";
         SQLiteStatement insertStmt = db.compileStatement(sql);
         insertStmt.clearBindings();
-        insertStmt.bindLong(1, livro.getId());
+        insertStmt.bindNull(1);
         insertStmt.bindString(2,livro.getTitulo());
         insertStmt.bindString(3,livro.getAutor());
         insertStmt.bindLong(4,livro.getAno());

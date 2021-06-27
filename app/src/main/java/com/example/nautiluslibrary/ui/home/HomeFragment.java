@@ -35,7 +35,6 @@ public class HomeFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         bd = new BDSQLiteHelper(context);
-//        adapter = new LivrosAdapter(context, listaLivros);
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -45,25 +44,10 @@ public class HomeFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        final TextView textView = root.findViewById(R.id.text_home);
-
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-
         listaLivros = bd.getAllLivros();
         ListView lista = (ListView) root.findViewById(R.id.lvLivros);
         LivrosAdapter adapter = new LivrosAdapter(getActivity(), listaLivros);
         lista.setAdapter(adapter);
-        Log.d("lista",listaLivros.toString());
-
-//        for(String log : listaLivros)
-//        {
-//            Log.v("Tag",log);
-//        }
 
         lista.setOnItemClickListener((parent, view, position, id) -> {
             Intent intent = new Intent(getActivity(), EditarLivroActivity.class);

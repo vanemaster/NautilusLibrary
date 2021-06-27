@@ -1,8 +1,10 @@
 package com.example.nautiluslibrary;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -29,6 +31,7 @@ import androidx.core.content.FileProvider;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -42,6 +45,7 @@ public class LivroActivity extends AppCompatActivity {
     private EditText autor;
     private Spinner genero;
     private EditText ano;
+    Bitmap takenImage = null;
     private String mType = "Terror";
     private Uri mCurrentContactUri;
     private boolean mContactHasChanged = false;
@@ -77,7 +81,6 @@ public class LivroActivity extends AppCompatActivity {
         autor.setOnTouchListener(mOnTouchListener);
         ano.setOnTouchListener(mOnTouchListener);
         imagem.setOnTouchListener(mOnTouchListener);
-        imagem.setOnTouchListener(mOnTouchListener);
 
         imagem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,14 +94,17 @@ public class LivroActivity extends AppCompatActivity {
         novo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bitmap takenImage = BitmapFactory.decodeFile(arquivoFoto.getAbsolutePath());
+
+                if(arquivoFoto != null){
+                    takenImage = BitmapFactory.decodeFile(arquivoFoto.getAbsolutePath());
+                }
+
                 Livro livro = new Livro();
                 livro.setTitulo(nome.getText().toString());
                 livro.setAutor(autor.getText().toString());
                 livro.setAno(Integer.parseInt(ano.getText().toString()));
                 livro.setGenero(genero.getSelectedItem().toString());
                 livro.setFoto(getBytesFromBitmap(takenImage));
-                Log.d("livro",livro.toString());
                 bd.addLivro(livro);
                 Intent intent = new Intent(LivroActivity.this,MainActivity.class);
                 startActivity(intent);
@@ -136,6 +142,22 @@ public class LivroActivity extends AppCompatActivity {
         return stream.toByteArray();
     }
 
+    public Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, timeStamp, null);
+        return Uri.parse(path);
+    }
+
+    public String getRealPathFromURI(Uri uri) {
+        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+        cursor.moveToFirst();
+        int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+        return cursor.getString(idx);
+    }
+
+
     public void trySelector() {
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -167,7 +189,13 @@ public class LivroActivity extends AppCompatActivity {
             if (data != null) {
                 imagemUri = data.getData();
                 imagem.setImageURI(imagemUri);
-                imagem.invalidate();
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imagemUri);
+                    Uri tempUri = getImageUri(getApplicationContext(), bitmap);
+                    arquivoFoto = new File(getRealPathFromURI(tempUri));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
         if (resultCode == RESULT_OK && requestCode == CAMERA) {
@@ -181,6 +209,7 @@ public class LivroActivity extends AppCompatActivity {
 
         Intent intent = new Intent(Intent.ACTION_PICK,
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
         startActivityForResult(intent, GALERIA_IMAGENS);
     }
 
@@ -192,7 +221,7 @@ public class LivroActivity extends AppCompatActivity {
             try {
                 arquivoFoto = criaArquivo();
             } catch (IOException ex) {
-//                mostraAlerta(getString(R.string.erro), getString(R.string.erro_salvando_foto));
+                Log.v("erro_salvar_imagem",ex.toString());
             }
 
             if (arquivoFoto != null) {
@@ -206,8 +235,7 @@ public class LivroActivity extends AppCompatActivity {
     }
 
     private File criaArquivo() throws IOException {
-        String timeStamp = new
-                SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         File pasta = Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES);
         arquivoFoto = new File(pasta.getPath() + File.separator
