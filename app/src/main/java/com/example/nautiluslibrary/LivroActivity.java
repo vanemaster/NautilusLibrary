@@ -71,9 +71,10 @@ public class LivroActivity extends AppCompatActivity {
         mCurrentContactUri = intent.getData();
 
         bd = new BDSQLiteHelper(this);
-        nome = (EditText) findViewById(R.id.edNome);
-        autor = (EditText) findViewById(R.id.edAutor);
-        ano = (EditText) findViewById(R.id.edAno);
+
+        nome = findViewById(R.id.edNome);
+        autor = findViewById(R.id.edAutor);
+        ano = findViewById(R.id.edAno);
         imagem = findViewById(R.id.imageFoto);
         genero = findViewById(R.id.edGenero);
 

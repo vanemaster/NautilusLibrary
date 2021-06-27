@@ -1,12 +1,15 @@
 package com.example.nautiluslibrary.ui.home;
 
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -31,6 +34,13 @@ public class HomeFragment extends Fragment {
     private LivrosAdapter adapter;
     ArrayList<Livro> listaLivros;
 
+    public static final String CONTENT_AUTHORITY = "com.example.nautiluslibrary";
+    public static final Uri BASE_URI = Uri.parse("content://"+ CONTENT_AUTHORITY);
+    // path name should be similar to your table name
+    public static final String PATH_CONTACTS = "nautiluslibrary";
+    public static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_URI, PATH_CONTACTS);
+
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -49,14 +59,25 @@ public class HomeFragment extends Fragment {
         LivrosAdapter adapter = new LivrosAdapter(getActivity(), listaLivros);
         lista.setAdapter(adapter);
 
-        lista.setOnItemClickListener((parent, view, position, id) -> {
-            Intent intent = new Intent(getActivity(), EditarLivroActivity.class);
-            intent.putExtra("ID", listaLivros.get(position).getId());
+        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), EditarLivroActivity.class);
+                Uri newUri = ContentUris.withAppendedId(CONTENT_URI, id);
+                intent.setData(newUri);
+                startActivity(intent);
 
-            intent.putExtra("LivroCorrente", listaLivros.get(position) );
-
-            startActivity(intent);
+            }
         });
+
+//        lista.setOnItemClickListener((parent, view, position, id) -> {
+
+//            Intent intent = new Intent(getActivity(), EditarLivroActivity.class);
+//            intent.putExtra("ID", listaLivros.get(position).getId());
+//            intent.putExtra("this_book", listaLivros.get(position) );
+
+//            startActivity(intent);
+//        });
         return root;
     }
 }

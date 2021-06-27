@@ -47,7 +47,6 @@ public class BDSQLiteHelper extends SQLiteOpenHelper {
 
     public void addLivro(Livro livro) {
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
 
         String sql = "INSERT INTO livros (id,titulo,autor,ano,foto,genero) VALUES(?,?,?,?,?,?)";
         SQLiteStatement insertStmt = db.compileStatement(sql);
@@ -64,7 +63,6 @@ public class BDSQLiteHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    // Necessário adicionar mais um NULL para Gênero ?
     public Livro getLivro(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABELA_LIVROS, // a. tabela
@@ -109,22 +107,39 @@ public class BDSQLiteHelper extends SQLiteOpenHelper {
         return listaLivros;
     }
 
-    public int updateLivro(Livro livro) {
+    public void updateLivro(Livro livro) {
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(TITULO, livro.getTitulo());
-        values.put(AUTOR, livro.getAutor());
-        values.put(ANO, new Integer(livro.getAno()));
-        values.put(FOTO, livro.getFoto());
-        values.put(GENERO, livro.getGenero());
 
+        String sql = "UPDATE livros SET id=?, titulo=?, autor=?, ano=?, foto=?, genero=? WHERE id=?";
 
-        int i = db.update(TABELA_LIVROS, //tabela
-                values, // valores
-                ID+" = ?", // colunas para comparar
-                new String[] { String.valueOf(livro.getId()) }); //parâmetros
+        SQLiteStatement updateStmt = db.compileStatement(sql);
+        updateStmt.clearBindings();
+        updateStmt.bindLong(1,livro.getId());
+        updateStmt.bindString(2,livro.getTitulo());
+        updateStmt.bindString(3,livro.getAutor());
+        updateStmt.bindLong(4,livro.getAno());
+        updateStmt.bindBlob(5, livro.getFoto());
+        updateStmt.bindString(6,livro.getGenero());
+        updateStmt.bindLong(7, livro.getId());
+
+        updateStmt.executeUpdateDelete();
+
         db.close();
-        return i; // número de linhas modificadas
+
+//        ContentValues values = new ContentValues();
+//        values.put(TITULO, livro.getTitulo());
+//        values.put(AUTOR, livro.getAutor());
+//        values.put(ANO, new Integer(livro.getAno()));
+//        values.put(FOTO, livro.getFoto());
+//        values.put(GENERO, livro.getGenero());
+//
+//
+//        int i = db.update(TABELA_LIVROS, //tabela
+//                values, // valores
+//                ID+" = ?", // colunas para comparar
+//                new String[] { String.valueOf(livro.getId()) }); //parâmetros
+//        db.close();
+//        return i; // número de linhas modificadas
     }
 
     public int deleteLivro(Livro livro) {

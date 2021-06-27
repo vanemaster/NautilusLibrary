@@ -12,13 +12,12 @@
         android:id="@+id/imageFoto"
         android:layout_width="257dp"
         android:layout_height="255dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="36dp"
         android:src="@drawable/ic_launcher_foreground"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
 
     <Button
         android:id="@+id/btnCarrega"
@@ -27,7 +26,9 @@
         android:layout_marginStart="44dp"
         android:layout_marginTop="24dp"
         android:onClick="buscar"
-        android:text="Carrega imagem"
+        android:text="Galeria"
+        app:icon="@drawable/ic_menu_gallery"
+        app:iconPadding="2dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageFoto" />
 
@@ -38,60 +39,64 @@
         android:layout_marginStart="236dp"
         android:layout_marginTop="24dp"
         android:onClick="tirarFoto"
-        android:text="Tirar foto"
+        android:text="Câmera"
+        app:icon="@drawable/ic_menu_camera"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageFoto" />
 
     <EditText
         android:id="@+id/edNome"
-        android:layout_width="208dp"
+        android:layout_width="338dp"
         android:layout_height="51dp"
         android:layout_centerInParent="true"
-        android:layout_marginStart="112dp"
+        android:layout_marginStart="42dp"
         android:layout_marginTop="20dp"
         android:hint="Titulo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnCarrega" />
 
+
     <EditText
         android:id="@+id/edAno"
-        android:layout_width="208dp"
+        android:layout_width="128dp"
         android:layout_height="51dp"
         android:layout_centerInParent="true"
-        android:layout_marginStart="112dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="246dp"
+        android:layout_marginTop="75dp"
         android:hint="Ano"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edAutor" />
+        app:layout_constraintTop_toTopOf="@+id/edNome" />
 
     <EditText
         android:id="@+id/edAutor"
-        android:layout_width="208dp"
+        android:layout_width="190dp"
         android:layout_height="51dp"
         android:layout_centerInParent="true"
-        android:layout_marginStart="112dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="24dp"
         android:hint="Autor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edNome" />
 
     <Spinner
         android:id="@+id/edGenero"
-        android:layout_width="208dp"
+        android:layout_width="330dp"
         android:layout_height="51dp"
-        android:layout_marginStart="112dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edAno" />
 
     <Button
         android:id="@+id/btnAdd"
-        android:layout_width="163dp"
+        android:layout_width="173dp"
         android:layout_height="63dp"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="32dp"
         android:layout_weight="1"
-        android:text="Adicionar"
+        android:text="Cadastrar"
+        app:icon="@android:drawable/ic_menu_add"
+        app:iconPadding="7dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edGenero" />
 
