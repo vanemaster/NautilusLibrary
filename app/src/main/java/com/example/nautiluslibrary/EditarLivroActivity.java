@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -32,9 +33,12 @@ import androidx.core.content.FileProvider;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class EditarLivroActivity extends AppCompatActivity {
 
@@ -71,14 +75,11 @@ public class EditarLivroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_editar_livro);
         Intent intent = getIntent();
 
-        mCurrentContactUri = intent.getData();
-        Log.i("uri", mCurrentContactUri.toString());
         final int id = intent.getIntExtra("ID", 0);
 
         bd = new BDSQLiteHelper(this);
 
         Livro livro = bd.getLivro(id);
-        Log.i("livro", livro.toString());
 
         nome = findViewById(R.id.edNome);
         autor = findViewById(R.id.edAutor);
@@ -92,7 +93,7 @@ public class EditarLivroActivity extends AppCompatActivity {
 
         //Select Generos
         setUpSpinner();
-        genero.setSelection(spinner.getPosition(livro.getAutor()));
+        genero.setSelection(spinner.getPosition(livro.getGenero()));
 
         // Imagem do BD pro layout
         byte[] img = livro.getFoto();
@@ -145,7 +146,22 @@ public class EditarLivroActivity extends AppCompatActivity {
                         .setNegativeButton(android.R.string.no, null).show();
             }
         });
+
+        final Button share = (Button) findViewById((R.id.btnShare));
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent shareIntent = new Intent();
+
+                shareIntent.setAction(Intent.ACTION_SEND);
+                shareIntent.putExtra(Intent.EXTRA_TEXT, livro.getTitulo()+" - "+livro.getAutor());
+                shareIntent.setType("text/plain");
+                startActivity(Intent.createChooser(shareIntent, "Compartilhe"));
+            }
+        });
     }
+
 
     private void setUpSpinner() {
 

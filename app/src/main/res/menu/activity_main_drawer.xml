@@ -12,13 +12,14 @@
             android:id="@+id/nav_gallery"
             android:icon="@drawable/pngegg"
             android:title="@string/terror" />
+
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_auto_ajuda"
             android:icon="@drawable/clipart3101415"
             android:title="@string/auto_ajuda" />
 
         <item
-            android:id="@+id/nav_romance"
+            android:id="@+id/nav_slideshow"
             android:icon="@drawable/like_favorite_heart_3524"
             android:title="@string/romance" />
 

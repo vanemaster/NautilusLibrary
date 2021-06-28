@@ -90,28 +90,43 @@
 
     <Button
         android:id="@+id/btnAlterar"
-        android:layout_width="143dp"
+        android:layout_width="93dp"
         android:layout_height="63dp"
         android:layout_marginStart="56dp"
         android:layout_marginTop="32dp"
         android:layout_weight="1"
-        android:text="Alterar"
         app:icon="@android:drawable/ic_menu_edit"
         app:iconPadding="7dp"
+        app:iconGravity="textStart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edGenero" />
+
+    <Button
+        android:id="@+id/btnShare"
+        android:layout_width="93dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="166dp"
+        android:layout_marginTop="32dp"
+        android:layout_weight="1"
+        android:backgroundTint="#009688"
+        app:icon="@android:drawable/ic_menu_share"
+        app:iconGravity="textStart"
+        app:iconPadding="7dp"
+        app:iconTint="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edGenero" />
 
     <Button
         android:id="@+id/btnRemover"
-        android:layout_width="153dp"
+        android:layout_width="93dp"
         android:layout_height="63dp"
-        android:layout_marginStart="216dp"
+        android:layout_marginStart="275dp"
         android:layout_marginTop="32dp"
         android:layout_weight="1"
         android:backgroundTint="#9E1418"
-        android:text="Remover"
         app:icon="@android:drawable/ic_menu_delete"
         app:iconPadding="7dp"
+        app:iconGravity="textStart"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edGenero" />
 

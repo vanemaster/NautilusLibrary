@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
+import android.util.Log;
 
 import java.sql.Blob;
 import java.util.ArrayList;
@@ -95,7 +96,21 @@ public class BDSQLiteHelper extends SQLiteOpenHelper {
 
     public ArrayList<Livro> getAllLivros() {
         ArrayList<Livro> listaLivros = new ArrayList<Livro>();
-        String query = "SELECT * FROM " + TABELA_LIVROS + " ORDER BY " + TITULO;
+        String query = "SELECT * FROM " + TABELA_LIVROS + " ORDER BY " + AUTOR;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            do {
+                Livro livro = cursorToLivro(cursor);
+                listaLivros.add(livro);
+            } while (cursor.moveToNext());
+        }
+        return listaLivros;
+    }
+
+    public ArrayList<Livro> getLivrosPorGenero(String genero) {
+        ArrayList<Livro> listaLivros = new ArrayList<Livro>();
+        String query = "SELECT * FROM " + TABELA_LIVROS + " WHERE "+ GENERO +" = '"+ genero +"' ORDER BY " + TITULO;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {
@@ -125,21 +140,6 @@ public class BDSQLiteHelper extends SQLiteOpenHelper {
         updateStmt.executeUpdateDelete();
 
         db.close();
-
-//        ContentValues values = new ContentValues();
-//        values.put(TITULO, livro.getTitulo());
-//        values.put(AUTOR, livro.getAutor());
-//        values.put(ANO, new Integer(livro.getAno()));
-//        values.put(FOTO, livro.getFoto());
-//        values.put(GENERO, livro.getGenero());
-//
-//
-//        int i = db.update(TABELA_LIVROS, //tabela
-//                values, // valores
-//                ID+" = ?", // colunas para comparar
-//                new String[] { String.valueOf(livro.getId()) }); //parâmetros
-//        db.close();
-//        return i; // número de linhas modificadas
     }
 
     public int deleteLivro(Livro livro) {

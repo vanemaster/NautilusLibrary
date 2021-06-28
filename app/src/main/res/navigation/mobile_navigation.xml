@@ -22,4 +22,34 @@
         android:name="com.example.nautiluslibrary.ui.slideshow.SlideshowFragment"
         android:label="@string/romance"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_ficcao"
+        android:name="com.example.nautiluslibrary.ui.FiccaoFragment"
+        android:label="@string/ficcao_cientifica"
+        tools:layout="@layout/fragment_ficcao" />
+
+    <fragment
+        android:id="@+id/nav_infantil"
+        android:name="com.example.nautiluslibrary.ui.InfantilFragment"
+        android:label="@string/infantil"
+        tools:layout="@layout/fragment_infantil" />
+
+    <fragment
+        android:id="@+id/nav_policial"
+        android:name="com.example.nautiluslibrary.ui.PolicialFragment"
+        android:label="@string/policial"
+        tools:layout="@layout/fragment_policial" />
+
+    <fragment
+        android:id="@+id/nav_tecnico"
+        android:name="com.example.nautiluslibrary.ui.TecnicoFragment"
+        android:label="@string/tecnico"
+        tools:layout="@layout/fragment_tecnico" />
+
+    <fragment
+        android:id="@+id/nav_auto_ajuda"
+        android:name="com.example.nautiluslibrary.ui.AutoAjudaFragment"
+        android:label="@string/auto_ajuda"
+        tools:layout="@layout/fragment_auto_ajuda" />
 </navigation>
