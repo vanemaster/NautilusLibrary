@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/txtAutor"
-        android:layout_width="163dp"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="37dp"
         android:layout_marginTop="9dp"
@@ -20,7 +20,7 @@
 
     <TextView
         android:id="@+id/txtNome"
-        android:layout_width="100dp"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtAutor"
         android:layout_marginStart="37dp"
